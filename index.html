@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pearl Harbor Day Trip — June 8, 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Source+Sans+3:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --navy: #042C53;
+    --navy-mid: #0C447C;
+    --navy-bright: #185FA5;
+    --navy-light: #378ADD;
+    --navy-pale: #E6F1FB;
+    --teal: #1D9E75;
+    --teal-pale: #E1F5EE;
+    --amber: #EF9F27;
+    --amber-pale: #FAEEDA;
+    --red: #E24B4A;
+    --red-pale: #FCEBEB;
+    --red-mid: #A32D2D;
+    --pink: #D4537E;
+    --pink-pale: #FBEAF0;
+    --gray: #5F5E5A;
+    --gray-light: #D3D1C7;
+    --gray-pale: #F1EFE8;
+    --text: #1a1a18;
+    --text-muted: #5F5E5A;
+    --border: rgba(0,0,0,0.1);
+    --bg: #faf9f6;
+    --white: #ffffff;
+  }
+
+  body {
+    font-family: 'Source Sans 3', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+    padding: 0;
+  }
+
+  /* HERO */
+  .hero {
+    background: var(--navy);
+    padding: 3rem 2rem 2.5rem;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -60px; right: -60px;
+    width: 260px; height: 260px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.03);
+  }
+  .hero::after {
+    content: '';
+    position: absolute;
+    bottom: -40px; right: 120px;
+    width: 140px; height: 140px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.04);
+  }
+  .hero-inner { max-width: 780px; margin: 0 auto; position: relative; z-index: 1; }
+  .hero-eyebrow {
+    font-size: 11px; font-weight: 600; letter-spacing: 0.12em;
+    text-transform: uppercase; color: #85B7EB; margin-bottom: 10px;
+  }
+  .hero-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 40px; font-weight: 600; color: #fff;
+    line-height: 1.15; margin-bottom: 6px;
+  }
+  .hero-subtitle {
+    font-family: 'Playfair Display', serif;
+    font-size: 18px; font-style: italic; color: #85B7EB;
+    margin-bottom: 2rem;
+  }
+  .hero-meta {
+    display: flex; flex-wrap: wrap; gap: 2rem;
+    border-top: 0.5px solid rgba(255,255,255,0.12);
+    padding-top: 1.5rem;
+  }
+  .hero-meta-item { display: flex; flex-direction: column; gap: 3px; }
+  .meta-label { font-size: 10px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: #85B7EB; }
+  .meta-val { font-size: 14px; color: #E6F1FB; font-weight: 500; }
+
+  /* MAIN */
+  .main { max-width: 780px; margin: 0 auto; padding: 2.5rem 2rem 4rem; }
+
+  /* SECTION LABELS */
+  .section-label {
+    font-size: 10px; font-weight: 600; letter-spacing: 0.12em;
+    text-transform: uppercase; color: var(--text-muted);
+    margin: 2.5rem 0 1rem;
+    display: flex; align-items: center; gap: 10px;
+  }
+  .section-label::after {
+    content: ''; flex: 1; height: 0.5px; background: var(--border);
+  }
+
+  /* BOOKING CARDS */
+  .booking-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 12px;
+  }
+  .booking-card {
+    background: var(--white);
+    border: 0.5px solid var(--border);
+    border-radius: 12px;
+    padding: 1.1rem 1.2rem;
+    position: relative;
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+  }
+  .booking-card:hover { transform: translateY(-1px); box-shadow: 0 4px 16px rgba(0,0,0,0.07); }
+  .booking-card.urgent { border-left: 3px solid var(--red); border-radius: 0 12px 12px 0; }
+  .booking-card.medium { border-left: 3px solid var(--amber); border-radius: 0 12px 12px 0; }
+  .booking-card.optional { border-left: 3px solid var(--teal); border-radius: 0 12px 12px 0; }
+
+  .priority-pill {
+    display: inline-block; font-size: 10px; font-weight: 600;
+    text-transform: uppercase; letter-spacing: 0.07em;
+    padding: 2px 9px; border-radius: 20px; margin-bottom: 10px;
+  }
+  .priority-pill.urgent { background: var(--red-pale); color: var(--red-mid); }
+  .priority-pill.medium { background: var(--amber-pale); color: #854F0B; }
+  .priority-pill.optional { background: var(--teal-pale); color: #0F6E56; }
+
+  .bc-label { font-size: 10px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--text-muted); margin-bottom: 3px; }
+  .bc-name { font-size: 15px; font-weight: 600; color: var(--text); margin-bottom: 6px; }
+  .bc-detail { font-size: 12.5px; color: var(--text-muted); line-height: 1.55; }
+  .bc-detail strong { color: var(--text); font-weight: 600; }
+  .bc-link {
+    display: inline-block; margin-top: 10px;
+    font-size: 12px; font-weight: 500; color: var(--navy-bright);
+    border: 0.5px solid var(--navy-light); border-radius: 20px;
+    padding: 4px 12px; text-decoration: none; transition: background 0.12s;
+  }
+  .bc-link:hover { background: var(--navy-pale); }
+
+  /* TIMELINE */
+  .timeline { position: relative; padding-left: 36px; }
+  .timeline::before {
+    content: ''; position: absolute;
+    left: 12px; top: 10px; bottom: 10px;
+    width: 1px; background: var(--border);
+  }
+  .tl-group { margin-bottom: 0; }
+  .tl-group-label {
+    font-size: 10px; font-weight: 600; letter-spacing: 0.1em;
+    text-transform: uppercase; color: var(--text-muted);
+    margin: 1.5rem 0 0.5rem -36px; padding-left: 36px;
+    display: flex; align-items: center; gap: 8px;
+  }
+
+  .tl-item { position: relative; padding: 0.7rem 0; }
+  .tl-dot {
+    position: absolute; left: -28px; top: 13px;
+    width: 11px; height: 11px; border-radius: 50%;
+    border: 2px solid var(--bg);
+    z-index: 1;
+  }
+  .dot-travel { background: var(--navy-light); }
+  .dot-activity { background: var(--teal); }
+  .dot-food { background: var(--amber); }
+  .dot-flight { background: var(--pink); }
+  .dot-hotel { background: var(--gray); }
+
+  .tl-time { font-size: 11px; font-weight: 600; letter-spacing: 0.05em; color: var(--text-muted); margin-bottom: 2px; }
+  .tl-event { font-size: 14.5px; font-weight: 500; color: var(--text); display: flex; align-items: center; flex-wrap: wrap; gap: 6px; }
+  .tl-note { font-size: 12.5px; color: var(--text-muted); margin-top: 3px; line-height: 1.5; }
+
+  .badge {
+    display: inline-block; font-size: 10px; font-weight: 600;
+    padding: 2px 8px; border-radius: 10px; letter-spacing: 0.04em;
+  }
+  .badge-blue { background: var(--navy-pale); color: var(--navy-mid); }
+  .badge-red { background: var(--red-pale); color: var(--red-mid); }
+  .badge-green { background: var(--teal-pale); color: #0F6E56; }
+  .badge-amber { background: var(--amber-pale); color: #854F0B; }
+  .badge-pink { background: var(--pink-pale); color: #993556; }
+
+  /* TIPS */
+  .tips {
+    background: var(--gray-pale);
+    border-radius: 12px;
+    padding: 1.2rem 1.4rem;
+    margin-top: 2.5rem;
+  }
+  .tips-head {
+    font-size: 10px; font-weight: 600; letter-spacing: 0.1em;
+    text-transform: uppercase; color: var(--text-muted); margin-bottom: 0.75rem;
+  }
+  .tip-row {
+    display: flex; gap: 10px; align-items: flex-start;
+    padding: 0.5rem 0; border-bottom: 0.5px solid var(--border);
+    font-size: 13px; color: var(--text-muted); line-height: 1.5;
+  }
+  .tip-row:last-child { border-bottom: none; padding-bottom: 0; }
+  .tip-row strong { color: var(--text); }
+  .tip-icon { flex-shrink: 0; font-size: 14px; margin-top: 1px; }
+
+  /* LEGEND */
+  .legend {
+    display: flex; flex-wrap: wrap; gap: 14px;
+    margin-bottom: 1.25rem;
+  }
+  .legend-item { display: flex; align-items: center; gap: 6px; font-size: 12px; color: var(--text-muted); }
+  .legend-dot { width: 9px; height: 9px; border-radius: 50%; flex-shrink: 0; }
+
+  /* DIVIDER */
+  .note-banner {
+    background: var(--navy-pale);
+    border: 0.5px solid #B5D4F4;
+    border-radius: 10px;
+    padding: 0.8rem 1rem;
+    font-size: 13px; color: var(--navy-mid);
+    margin-bottom: 1.5rem;
+    display: flex; gap: 8px; align-items: flex-start;
+    line-height: 1.5;
+  }
+
+  @media (max-width: 600px) {
+    .hero { padding: 2rem 1.25rem 2rem; }
+    .hero-title { font-size: 28px; }
+    .main { padding: 2rem 1.25rem 3rem; }
+    .hero-meta { gap: 1rem; }
+  }
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="hero-inner">
+    <div class="hero-eyebrow">Group Day Trip &mdash; June 8, 2026</div>
+    <div class="hero-title">Pearl Harbor &amp; Waikiki</div>
+    <div class="hero-subtitle">Maui to Honolulu and back in a day</div>
+    <div class="hero-meta">
+      <div class="hero-meta-item">
+        <span class="meta-label">Departing from</span>
+        <span class="meta-val">Grand Wailea, Maui</span>
+      </div>
+      <div class="hero-meta-item">
+        <span class="meta-label">Airport</span>
+        <span class="meta-val">Kahului (OGG) → Honolulu (HNL)</span>
+      </div>
+      <div class="hero-meta-item">
+        <span class="meta-label">Arizona Memorial</span>
+        <span class="meta-val">3:30 PM Reserved</span>
+      </div>
+      <div class="hero-meta-item">
+        <span class="meta-label">Return</span>
+        <span class="meta-val">Same day ~8:00 PM</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="main">
+
+  <div class="note-banner">
+    <span>&#9432;</span>
+    <span>With a <strong>3:30 PM USS Arizona reservation</strong>, the day has been restructured: Waikiki lunch and beach time move to the morning, and Pearl Harbor is the afternoon anchor. Plan your return flight for <strong>6:30–7:00 PM</strong> at the earliest.</span>
+  </div>
+
+  <div class="section-label">What to book — in order of urgency</div>
+
+  <div class="booking-grid">
+
+    <div class="booking-card urgent">
+      <div class="priority-pill urgent">Book first</div>
+      <div class="bc-label">Memorial Tour</div>
+      <div class="bc-name">USS Arizona Memorial</div>
+      <div class="bc-detail">Reserve the <strong>3:30 PM</strong> timed entry. Free tickets — book weeks ahead on recreation.gov. One ticket per person required.</div>
+      <a class="bc-link" href="https://www.recreation.gov/ticket/facility/300004" target="_blank">recreation.gov &rarr;</a>
+    </div>
+
+    <div class="booking-card urgent">
+      <div class="priority-pill urgent">Book first</div>
+      <div class="bc-label">Flights &mdash; Outbound</div>
+      <div class="bc-name">Hawaiian Airlines OGG &rarr; HNL</div>
+      <div class="bc-detail">Target <strong>9:30–10:00 AM</strong> departure. ~35–45 min flight. Arrive HNL by ~10:30 AM, in Waikiki by 11:00 AM.</div>
+      <a class="bc-link" href="https://www.hawaiianairlines.com" target="_blank">hawaiianairlines.com &rarr;</a>
+    </div>
+
+    <div class="booking-card urgent">
+      <div class="priority-pill urgent">Book first</div>
+      <div class="bc-label">Flights &mdash; Return</div>
+      <div class="bc-name">Hawaiian Airlines HNL &rarr; OGG</div>
+      <div class="bc-detail">Target <strong>6:30–7:00 PM</strong> departure. Arizona ends ~5:00 PM, allows ~1.5 hrs to airport. Arrive Maui ~7:30–8:00 PM.</div>
+      <a class="bc-link" href="https://www.hawaiianairlines.com" target="_blank">hawaiianairlines.com &rarr;</a>
+    </div>
+
+    <div class="booking-card medium">
+      <div class="priority-pill medium">Book ahead</div>
+      <div class="bc-label">Dining</div>
+      <div class="bc-name">Duke's Waikiki</div>
+      <div class="bc-detail">Lunch reservation for <strong>11:30 AM–12:00 PM</strong>. Oceanfront and popular — reserve several days out. Confirmed timing fits before Pearl Harbor.</div>
+      <a class="bc-link" href="https://www.opentable.com/dukes-waikiki" target="_blank">OpenTable &rarr;</a>
+    </div>
+
+    <div class="booking-card optional">
+      <div class="priority-pill optional">Optional</div>
+      <div class="bc-label">Tours</div>
+      <div class="bc-name">USS Missouri</div>
+      <div class="bc-detail">Visit before the Arizona reservation (~1:00–3:00 PM at Pearl Harbor). Buy tickets online or at the gate. No timed entry required.</div>
+      <a class="bc-link" href="https://ussmissouri.org" target="_blank">ussmissouri.org &rarr;</a>
+    </div>
+
+    <div class="booking-card optional">
+      <div class="priority-pill optional">Optional</div>
+      <div class="bc-label">Dinner</div>
+      <div class="bc-name">Humuhumunukunukuapua&#699;a</div>
+      <div class="bc-detail">Back at Grand Wailea by ~8:00 PM. Reserve in advance if planning resort dinner. Monkeypod Kitchen is a nearby alternative.</div>
+      <a class="bc-link" href="https://www.grandwailea.com/dining/humuhumunukunukuapuaa" target="_blank">grandwailea.com &rarr;</a>
+    </div>
+
+  </div>
+
+  <div class="section-label">Full day schedule</div>
+
+  <div class="legend">
+    <div class="legend-item"><div class="legend-dot" style="background:#D4537E;"></div>Flight</div>
+    <div class="legend-item"><div class="legend-dot" style="background:#378ADD;"></div>Transit</div>
+    <div class="legend-item"><div class="legend-dot" style="background:#1D9E75;"></div>Activity</div>
+    <div class="legend-item"><div class="legend-dot" style="background:#EF9F27;"></div>Food / Beach</div>
+    <div class="legend-item"><div class="legend-dot" style="background:#888780;"></div>Hotel</div>
+  </div>
+
+  <div class="timeline">
+
+    <!-- MORNING -->
+    <div class="tl-group-label">Morning &mdash; Maui departure</div>
+
+    <div class="tl-item">
+      <div class="tl-dot dot-hotel"></div>
+      <div class="tl-time">8:30 AM</div>
+      <div class="tl-event">Wake up at Grand Wailea</div>
+      <div class="tl-note">Relaxed start. Quick breakfast. Travel light &mdash; no bags allowed at Pearl Harbor, leave luggage at resort.</div>
+    </div>
+
+    <div class="tl-item">
+      <div class="tl-dot dot-travel"></div>
+      <div class="tl-time">9:00 AM</div>
+      <div class="tl-event">Request Uber to Kahului Airport (OGG)</div>
+      <div class="tl-note">~15–20 min ride. Schedule the night before using Uber's scheduled ride feature.</div>
+    </div>
+
+    <div class="tl-item">
+      <div class="tl-dot dot-flight"></div>
+      <div class="tl-time">9:30–10:00 AM</div>
+      <div class="tl-event">Flight departs &mdash; OGG &rarr; HNL <span class="badge badge-pink">Hawaiian Airlines</span></div>
+      <div class="tl-note">~35–45 min. Arrive Honolulu ~10:30 AM.</div>
+    </div>
+
+    <div class="tl-item">
+      <div class="tl-dot dot-travel"></div>
+      <div class="tl-time">10:30 AM</div>
+      <div class="tl-event">Uber to Waikiki</div>
+      <div class="tl-note">~20–25 min to Duke's Waikiki area.</div>
+    </div>
+
+    <!-- WAIKIKI -->
+    <div class="tl-group-label">Late morning &mdash; Waikiki</div>
+
+    <div class="tl-item">
+      <div class="tl-dot dot-food"></div>
+      <div class="tl-time">11:30 AM</div>
+      <div class="tl-event">Lunch &mdash; Duke's Waikiki <span class="badge badge-amber">Reservation recommended</span></div>
+      <div class="tl-note">Oceanfront seating, ~1 hour. Book ahead on OpenTable.</div>
+    </div>
+
+    <div class="tl-item">
+      <div class="tl-dot dot-food"></div>
+      <div class="tl-time">12:30 PM</div>
+      <div class="tl-event">Waikiki Beach &mdash; relax &amp; walk</div>
+      <div class="tl-note">~1.5 hrs of beach time. Walk the strip, grab a drink. Keep an eye on time for the Uber to Pearl Harbor.</div>
+    </div>
+
+    <div class="tl-item">
+      <div class="tl-dot dot-travel"></div>
+      <div class="tl-time">2:00 PM</div>
+      <div class="tl-event">Uber to Pearl Harbor</div>
+      <div class="tl-note">~25–30 min ride. Arrive by 2:30 PM &mdash; enough time to check in and explore before your reservation.</div>
+    </div>
+
+    <!-- PEARL HARBOR -->
+    <div class="tl-group-label">Afternoon &mdash; Pearl Harbor</div>
+
+    <div class="tl-item">
+      <div class="tl-dot dot-activity"></div>
+      <div class="tl-time">2:30 PM</div>
+      <div class="tl-event">Pearl Harbor &mdash; Visitor Center &amp; USS Missouri</div>
+      <div class="tl-note">Arrive, get oriented, visit exhibits and USS Missouri battleship (~45–60 min) before your Arizona time slot.</div>
+    </div>
+
+    <div class="tl-item">
+      <div class="tl-dot dot-activity"></div>
+      <div class="tl-time">3:30 PM</div>
+      <div class="tl-event">USS Arizona Memorial <span class="badge badge-red">Reserved 3:30 PM</span></div>
+      <div class="tl-note">Check in 10–15 min early. Film showing + boat ride to the memorial. ~1 hr total. Free but timed &mdash; do not be late.</div>
+    </div>
+
+    <div class="tl-item">
+      <div class="tl-dot dot-activity"></div>
+      <div class="tl-time">4:30 PM</div>
+      <div class="tl-event">Finish Pearl Harbor visit</div>
+      <div class="tl-note">Additional time for gift shop or any remaining exhibits before heading to the airport.</div>
+    </div>
+
+    <!-- RETURN -->
+    <div class="tl-group-label">Evening &mdash; return to Maui</div>
+
+    <div class="tl-item">
+      <div class="tl-dot dot-travel"></div>
+      <div class="tl-time">5:00 PM</div>
+      <div class="tl-event">Uber to Honolulu Airport (HNL)</div>
+      <div class="tl-note">~20–25 min from Pearl Harbor. Arrive by 5:30 PM for a 6:30–7:00 PM departure.</div>
+    </div>
+
+    <div class="tl-item">
+      <div class="tl-dot dot-flight"></div>
+      <div class="tl-time">6:30–7:00 PM</div>
+      <div class="tl-event">Return flight &mdash; HNL &rarr; OGG <span class="badge badge-pink">Hawaiian Airlines</span></div>
+      <div class="tl-note">~35–45 min. Arrive Maui ~7:30–8:00 PM.</div>
+    </div>
+
+    <div class="tl-item">
+      <div class="tl-dot dot-travel"></div>
+      <div class="tl-time">~7:45 PM</div>
+      <div class="tl-event">Uber back to Grand Wailea</div>
+      <div class="tl-note">~15–20 min from OGG. Back at resort by ~8:00 PM.</div>
+    </div>
+
+    <div class="tl-item">
+      <div class="tl-dot dot-food"></div>
+      <div class="tl-time">8:30 PM</div>
+      <div class="tl-event">Optional dinner at resort</div>
+      <div class="tl-note">Humuhumunukunukuapua&#699;a at Grand Wailea or Monkeypod Kitchen nearby. Reserve in advance if planning to dine.</div>
+    </div>
+
+  </div>
+
+  <div class="tips">
+    <div class="tips-head">Group reminders</div>
+    <div class="tip-row">
+      <span class="tip-icon">&#128684;</span>
+      <span><strong>No bags at Pearl Harbor</strong> &mdash; all bags must stay in your car or a locker. Leave everything at the hotel before you depart.</span>
+    </div>
+    <div class="tip-row">
+      <span class="tip-icon">&#9200;</span>
+      <span><strong>Arizona tickets are free but timed</strong> &mdash; book on recreation.gov now. Your 3:30 PM slot is a firm commitment. Late arrivals may forfeit entry.</span>
+    </div>
+    <div class="tip-row">
+      <span class="tip-icon">&#128241;</span>
+      <span><strong>Pre-schedule Ubers the night before</strong> &mdash; use the Uber scheduled ride feature for the morning airport run. Don't rely on surge-pricing availability at 9:00 AM.</span>
+    </div>
+    <div class="tip-row">
+      <span class="tip-icon">&#9992;&#65039;</span>
+      <span><strong>Book flights as a group</strong> &mdash; coordinate seats together on Hawaiian Airlines. Select same flight and book round-trip in one transaction for best availability.</span>
+    </div>
+    <div class="tip-row">
+      <span class="tip-icon">&#127944;</span>
+      <span><strong>Waikiki beach time is flexible</strong> &mdash; if the group wants more time at Pearl Harbor, trim beach time to 30–45 min and Uber over by 2:30 PM instead.</span>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>
